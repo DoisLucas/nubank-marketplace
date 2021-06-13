@@ -1,4 +1,4 @@
-import 'package:nubank_marketplace/domain/entities/offer.dart';
+import 'offer.dart';
 
 class Customer {
   String id;
