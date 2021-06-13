@@ -3,7 +3,7 @@ class Transaction {
   final num value;
   final String date;
 
-  Transaction({
+  const Transaction({
     required this.name,
     required this.value,
     required this.date,

@@ -1,11 +1,11 @@
 import 'customer.dart';
 
 class PurchaseResult {
-  bool success;
-  String errorMessage;
-  Customer customer;
+  final bool success;
+  final String errorMessage;
+  final Customer customer;
 
-  PurchaseResult({
+  const PurchaseResult({
     required this.success,
     required this.errorMessage,
     required this.customer,

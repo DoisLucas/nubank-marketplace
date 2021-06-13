@@ -1,12 +1,12 @@
 import 'offer.dart';
 
 class Customer {
-  String id;
-  String name;
-  int balance;
-  List<Offer> offers;
+  final String id;
+  final String name;
+  final int balance;
+  final List<Offer> offers;
 
-  Customer({
+  const Customer({
     required this.id,
     required this.name,
     required this.balance,
