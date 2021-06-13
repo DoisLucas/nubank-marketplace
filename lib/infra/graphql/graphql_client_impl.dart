@@ -20,9 +20,16 @@ class GraphqlClientImpl implements GraphqlClient {
   }
 
   @override
-  Future request({required String query}) async {
+  Future query({required String query}) async {
     final options = QueryOptions(document: gql(query));
     final result = await _client.query(options);
+    return result;
+  }
+
+  @override
+  Future mutate({required String query}) async {
+    final options = MutationOptions(document: gql(query));
+    final result = await _client.mutate(options);
     return result;
   }
 }

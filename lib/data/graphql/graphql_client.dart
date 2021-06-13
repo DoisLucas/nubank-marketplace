@@ -1,3 +1,4 @@
 abstract class GraphqlClient {
-  Future<dynamic> request({required String query});
+  Future<dynamic> query({required String query});
+  Future<dynamic> mutate({required String query});
 }
