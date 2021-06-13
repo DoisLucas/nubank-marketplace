@@ -1,4 +1,4 @@
-import 'customer.dart';
+import 'entities.dart';
 
 class PurchaseResult {
   final bool success;

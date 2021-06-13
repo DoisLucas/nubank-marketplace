@@ -1,4 +1,4 @@
-import 'package:nubank_marketplace/domain/entities/purchase_result.dart';
+import '../entities/entities.dart';
 
 abstract class MakePurchase {
   Future<PurchaseResult> purchase(String offerId);

@@ -1,4 +1,4 @@
-import 'package:nubank_marketplace/domain/entities/product.dart';
+import '../../domain/entities/entities.dart';
 
 class ProductModel extends Product {
   final String id;

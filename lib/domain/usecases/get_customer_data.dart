@@ -1,4 +1,4 @@
-import 'package:nubank_marketplace/domain/entities/customer.dart';
+import '../entities/entities.dart';
 
 abstract class GetCustomerData {
   Future<Customer> getCustomerData(String offerId);

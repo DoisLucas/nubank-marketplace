@@ -1,5 +1,5 @@
-import 'package:nubank_marketplace/data/models/customer_model.dart';
-import 'package:nubank_marketplace/domain/entities/purchase_result.dart';
+import 'models.dart';
+import '../../domain/entities/entities.dart';
 
 class PurchaseResultModel extends PurchaseResult {
   final bool success;

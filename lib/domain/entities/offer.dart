@@ -1,4 +1,4 @@
-import 'product.dart';
+import 'entities.dart';
 
 class Offer {
   final String id;

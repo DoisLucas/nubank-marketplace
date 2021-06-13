@@ -1,4 +1,4 @@
-import 'offer.dart';
+import 'entities.dart';
 
 class Customer {
   final String id;
