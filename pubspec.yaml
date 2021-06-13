@@ -28,13 +28,13 @@ flutter:
   fonts:
     - family: Graphik
       fonts:
-        - asset: assets/fonts/montserrat/GraphikThin.otf
+        - asset: assets/fonts/graphik/GraphikThin.otf
           weight: 100
-        - asset: assets/fonts/montserrat/GraphikExtralight.otf
+        - asset: assets/fonts/graphik/GraphikExtralight.otf
           weight: 200
-        - asset: assets/fonts/montserrat/GraphikLight.otf
+        - asset: assets/fonts/graphik/GraphikLight.otf
           weight: 300
-        - asset: assets/fonts/montserrat/GraphikRegular.otf
+        - asset: assets/fonts/graphik/GraphikRegular.otf
           weight: 400
         - asset: assets/fonts/graphik/GraphikMedium.otf
           weight: 500
