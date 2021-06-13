@@ -1,5 +1,5 @@
+import 'package:nubank_marketplace/data/models/product_model.dart';
 import 'package:nubank_marketplace/domain/entities/offer.dart';
-import 'package:nubank_marketplace/infra/models/product_model.dart';
 
 class OfferModel extends Offer {
   final String id;
