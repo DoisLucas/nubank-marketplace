@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
+import 'package:nubank_marketplace/presenter/marketplace/marketplace_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,16 +14,20 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NuTheme.kMainColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              buildAppBar(),
-              buildContent(),
-            ],
-          ),
+      appBar: AppBar(
+        brightness: Brightness.dark,
+        toolbarHeight: 0,
+        elevation: 0,
+        backgroundColor: NuTheme.kMainColor,
+      ),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          children: [
+            buildAppBar(),
+            buildContent(),
+          ],
         ),
       ),
     );
@@ -41,6 +48,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Spacer(),
+          Container(
+            width: 45,
+            height: 45,
+            decoration: BoxDecoration(
+              color: NuTheme.kMainMiddleColor,
+              borderRadius: BorderRadius.circular(45 / 2),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             width: 45,
             height: 45,
@@ -178,25 +196,28 @@ class _HomePageState extends State<HomePage> {
                     SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: 40,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3),
-                        border: Border.all(
-                          width: 0.5,
-                          color: NuTheme.kMainColor,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "CONHECER",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'Graphik',
-                            fontSize: 12,
+                    GestureDetector(
+                      onTap: () => Get.to(() => MarketplacePage()),
+                      child: Container(
+                        height: 40,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(3),
+                          border: Border.all(
+                            width: 0.5,
                             color: NuTheme.kMainColor,
-                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "CONHECER",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Graphik',
+                              fontSize: 12,
+                              color: NuTheme.kMainColor,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
