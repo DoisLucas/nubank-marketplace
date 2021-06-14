@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
 
 class Utils {
@@ -12,8 +13,20 @@ class Utils {
   }
 
   static String toMoney(int value) {
-    final currency = NumberFormat.currency(symbol: 'R\$', locale: 'ptBr');
+    final currency = NumberFormat.currency(symbol: '\$');
     return currency.format(value);
+  }
+
+  static void handleResult({
+    required BuildContext context,
+    required String title,
+    bool isError = false,
+  }) {
+    Utils.showSnackBar(
+      title: isError ? title : Strings.successPurchase,
+      context: context,
+      icon: isError ? Icons.error_outline : Icons.check_circle_outline,
+    );
   }
 
   static void showSnackBar({required String title, required BuildContext context, IconData? icon}) {
@@ -29,7 +42,11 @@ class Utils {
       backgroundColor: NuTheme.kDark,
       flushbarPosition: FlushbarPosition.BOTTOM,
       borderRadius: BorderRadius.circular(5),
-      icon: Icon(icon, color: NuTheme.kGrayColor, size: 25,),
+      icon: Icon(
+        icon,
+        color: NuTheme.kGrayColor,
+        size: 25,
+      ),
       duration: Duration(seconds: 6),
       shouldIconPulse: false,
       padding: EdgeInsets.all(25),

@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/domain/entities/entities.dart';
 
 import '../theme.dart';
+import 'main_button.dart';
 
 class ProductCardHorizontal extends StatelessWidget {
   final Offer offer;
@@ -82,26 +84,9 @@ class ProductCardHorizontal extends StatelessWidget {
                   ),
                 ),
                 Spacer(),
-                GestureDetector(
+                MainButton(
+                  title: Strings.buy,
                   onTap: onButtonTap,
-                  child: Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: NuTheme.kMainColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "COMPRAR",
-                        style: TextStyle(
-                          fontFamily: 'Graphik',
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
                 )
               ],
             ),

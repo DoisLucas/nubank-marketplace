@@ -12,6 +12,7 @@ import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/domain/entities/customer.dart';
 import 'package:nubank_marketplace/domain/entities/purchase_result.dart';
 import 'package:nubank_marketplace/presenter/marketplace/marketplace_controller.dart';
+import 'package:nubank_marketplace/presenter/product/product_page.dart';
 
 class MarketplacePage extends StatelessWidget {
   final Customer? customer;
@@ -111,15 +112,13 @@ class MarketplacePage extends StatelessWidget {
                       offer: e,
                       onButtonTap: () async {
                         PurchaseResult result = await controller.buy(e.id);
-                        handleResult(
+                        Utils.handleResult(
                           title: result.errorMessage,
                           context: context,
                           isError: !result.success,
                         );
                       },
-                      onCardTap: () {
-                        //Get.to - PDP
-                      },
+                      onCardTap: () => Get.to(ProductPage(offer: e)),
                     );
                   },
                 ).toList(),
@@ -134,15 +133,13 @@ class MarketplacePage extends StatelessWidget {
                     offer: e,
                     onButtonTap: () async {
                       PurchaseResult result = await controller.buy(e.id);
-                      handleResult(
+                      Utils.handleResult(
                         title: result.errorMessage,
                         context: context,
                         isError: !result.success,
                       );
                     },
-                    onCardTap: () {
-                      //Get.to - PDP
-                    },
+                    onCardTap: () => Get.to(ProductPage(offer: e)),
                   );
                 },
               ).toList(),
@@ -150,18 +147,6 @@ class MarketplacePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void handleResult({
-    required BuildContext context,
-    required String title,
-    bool isError = false,
-  }) {
-    Utils.showSnackBar(
-      title: isError ? title : Strings.successPurchase,
-      context: context,
-      icon: isError ? Icons.error_outline : Icons.check_circle_outline,
     );
   }
 }

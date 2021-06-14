@@ -11,4 +11,5 @@ class Strings {
   static const String wanted = 'The most wanted';
   static const String nuStore = 'Nu Store';
   static const String successPurchase = "Purchase made successfully";
+  static const String description = "Description";
 }
