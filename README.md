@@ -25,8 +25,9 @@ A Flutter app that allows users to buy products with their cash on account
 
 ## Architecture
 
-<img src="https://github.com/DoisLucas/nubank-marketplace/blob/main/assets/screenshots/diagram.png" width="60%" height="60%"/>
-
+<p align="center">
+<img src="https://github.com/DoisLucas/nubank-marketplace/blob/main/assets/screenshots/diagram.png" width="60%" height="60%" align="center"/>
+</p>
 
 ## External Packages
 
