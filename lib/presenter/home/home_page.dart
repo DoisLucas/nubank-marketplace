@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nubank_marketplace/commons/components/outline_button.dart' as nuOutlineButton;
+import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
-import 'package:nubank_marketplace/commons/utils/conversion.dart';
+import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/domain/entities/customer.dart';
 import 'package:nubank_marketplace/presenter/marketplace/marketplace_page.dart';
 
@@ -41,7 +42,7 @@ class HomePage extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            "Olá, ${customer?.name}",
+            "${Strings.hello}, ${customer?.name}",
             style: TextStyle(
               fontFamily: 'Graphik',
               fontSize: 19,
@@ -106,7 +107,7 @@ class HomePage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            "Conta",
+                            Strings.account,
                             style: TextStyle(
                               fontFamily: 'Graphik',
                               fontSize: 12,
@@ -121,7 +122,7 @@ class HomePage extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Saldo disponível",
+                      Strings.balance,
                       style: TextStyle(
                         fontFamily: 'Graphik',
                         fontSize: 10,
@@ -132,7 +133,7 @@ class HomePage extends StatelessWidget {
                       height: 15,
                     ),
                     Text(
-                      "${toMoney(customer?.balance ?? 0)}",
+                      "${Utils.toMoney(customer?.balance ?? 0)}",
                       style: TextStyle(
                         fontFamily: 'Graphik',
                         fontSize: 25,
@@ -171,7 +172,7 @@ class HomePage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            "Nu Store",
+                            Strings.nuStore,
                             style: TextStyle(
                               fontFamily: 'Graphik',
                               fontSize: 15,
@@ -187,7 +188,7 @@ class HomePage extends StatelessWidget {
                       height: 20,
                     ),
                     Text(
-                      "Conheça a Nu Store: tudo que você precisa em um só lugar.",
+                      Strings.discoverDescription,
                       style: TextStyle(
                         fontFamily: 'Graphik',
                         fontSize: 12,
@@ -199,7 +200,7 @@ class HomePage extends StatelessWidget {
                       height: 15,
                     ),
                     nuOutlineButton.OutlineButton(
-                      text: 'CONHECER',
+                      text: Strings.discover,
                       onPressed: () {
                         Get.to(
                           () => MarketplacePage(customer: customer),

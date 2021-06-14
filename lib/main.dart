@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
+import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/data/graphql/graphql.dart';
 import 'package:nubank_marketplace/data/usecases/get_customer_data_graphql.dart';
 import 'package:nubank_marketplace/data/usecases/usecases.dart';
@@ -9,8 +10,6 @@ import 'package:nubank_marketplace/domain/usecases/make_purchase.dart';
 import 'package:nubank_marketplace/infra/graphql/graphql.dart';
 import 'package:nubank_marketplace/presenter/home/home_page.dart';
 import 'package:nubank_marketplace/presenter/splash/splash_page.dart';
-
-import 'commons/utils/constants.dart';
 
 void main() {
   runFactories();
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
 
 void runFactories() {
   //Graphql Client
-  GraphqlClient graphqlClient = GraphqlClientImpl(url: kApiUrl, token: 'token');
+  GraphqlClient graphqlClient = GraphqlClientImpl(url: Utils.getApiUrl(), token: 'token');
   Get.put(graphqlClient, tag: 'graphql_client');
 
   //Usecases

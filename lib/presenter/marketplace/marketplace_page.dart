@@ -6,9 +6,9 @@ import 'package:nubank_marketplace/commons/components/product_card_horizontal.da
 import 'package:nubank_marketplace/commons/components/product_card_vertical.dart';
 import 'package:nubank_marketplace/commons/components/section_divider.dart';
 import 'package:nubank_marketplace/commons/components/section_title.dart';
+import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
-import 'package:nubank_marketplace/commons/utils/conversion.dart';
-import 'package:nubank_marketplace/commons/utils/utils.dart';
+import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/domain/entities/customer.dart';
 import 'package:nubank_marketplace/domain/entities/purchase_result.dart';
 import 'package:nubank_marketplace/presenter/marketplace/marketplace_controller.dart';
@@ -58,7 +58,7 @@ class MarketplacePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 25, right: 25, top: 25),
               child: Text(
-                "Saldo disponível",
+                Strings.balance,
                 style: TextStyle(
                   fontFamily: 'Graphik',
                   fontSize: 13,
@@ -70,7 +70,7 @@ class MarketplacePage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 25, left: 25, top: 10, bottom: 25),
               child: Text(
-                "${toMoney(customer?.balance ?? 0)}",
+                "${Utils.toMoney(customer?.balance ?? 0)}",
                 style: TextStyle(
                   fontFamily: 'Graphik',
                   fontSize: 25,
@@ -86,12 +86,12 @@ class MarketplacePage extends StatelessWidget {
               child: Row(
                 children: [
                   CircleButton(
-                    text: 'Favoritos',
+                    text: Strings.favorite,
                     onPressed: () {},
                   ),
                   SizedBox(width: 10),
                   CircleButton(
-                    text: 'Pedidos',
+                    text: Strings.ordered,
                     baloonText: '2',
                     onPressed: () {},
                   ),
@@ -99,7 +99,7 @@ class MarketplacePage extends StatelessWidget {
               ),
             ),
             SectionDivider(),
-            SectionTitle(title: "Promoção do dia"),
+            SectionTitle(title: Strings.specials),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: BouncingScrollPhysics(),
@@ -126,7 +126,7 @@ class MarketplacePage extends StatelessWidget {
               ),
             ),
             SectionDivider(),
-            SectionTitle(title: "Os queridinhos"),
+            SectionTitle(title: Strings.wanted),
             Column(
               children: customer!.offers!.map(
                 (e) {
@@ -159,7 +159,7 @@ class MarketplacePage extends StatelessWidget {
     bool isError = false,
   }) {
     Utils.showSnackBar(
-      title: isError ? title : "Purchase  made successfully",
+      title: isError ? title : Strings.successPurchase,
       context: context,
       icon: isError ? Icons.error_outline : Icons.check_circle_outline,
     );

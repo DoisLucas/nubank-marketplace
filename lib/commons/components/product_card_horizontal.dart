@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nubank_marketplace/commons/utils/conversion.dart';
+import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/domain/entities/entities.dart';
 
 import '../theme.dart';
@@ -71,7 +71,7 @@ class ProductCardHorizontal extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  "${toMoney(offer.price)}",
+                  "${Utils.toMoney(offer.price)}",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
