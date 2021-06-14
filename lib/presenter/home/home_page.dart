@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:nubank_marketplace/commons/components/outline_button.dart' as nuOutlineButton;
 import 'package:nubank_marketplace/commons/theme.dart';
 import 'package:nubank_marketplace/commons/utils/conversion.dart';
 import 'package:nubank_marketplace/domain/entities/customer.dart';
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             buildAppBar(context),
@@ -99,7 +100,7 @@ class HomePage extends StatelessWidget {
                           height: 25,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25 / 2),
-                            color: NuTheme.kMainLowColor,
+                            color: NuTheme.kGrayLowColor,
                           ),
                         ),
                         Padding(
@@ -109,7 +110,7 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Graphik',
                               fontSize: 12,
-                              color: NuTheme.kGray,
+                              color: NuTheme.kGrayColor,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -124,7 +125,7 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Graphik',
                         fontSize: 10,
-                        color: NuTheme.kGray,
+                        color: NuTheme.kGrayColor,
                       ),
                     ),
                     SizedBox(
@@ -197,31 +198,13 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    GestureDetector(
-                      onTap: () => Get.to(() => MarketplacePage()),
-                      child: Container(
-                        height: 40,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          border: Border.all(
-                            width: 0.5,
-                            color: NuTheme.kMainColor,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "CONHECER",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'Graphik',
-                              fontSize: 12,
-                              color: NuTheme.kMainColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
+                    nuOutlineButton.OutlineButton(
+                      text: 'CONHECER',
+                      onPressed: () {
+                        Get.to(
+                          () => MarketplacePage(customer: customer),
+                        );
+                      },
                     )
                   ],
                 ),

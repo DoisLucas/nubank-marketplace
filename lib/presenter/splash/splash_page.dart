@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
-import 'package:nubank_marketplace/presenter/home/home_page.dart';
 import 'package:nubank_marketplace/presenter/splash/splash_controller.dart';
 
 class SplashPage extends StatelessWidget {
@@ -10,7 +9,6 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller = Get.put(SplashController());
-    onLoad();
 
     return Scaffold(
       backgroundColor: NuTheme.kMainColor,
@@ -32,7 +30,9 @@ class SplashPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom + 20),
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).padding.bottom + 20,
+              ),
               child: CircularProgressIndicator(
                 strokeWidth: 1.5,
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
@@ -42,12 +42,5 @@ class SplashPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void onLoad() {
-    print("Meee");
-    controller.getData().then((value) {
-      Get.to(() => HomePage(customer: value), transition: Transition.fade);
-    });
   }
 }
