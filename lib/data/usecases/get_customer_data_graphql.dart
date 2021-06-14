@@ -9,7 +9,7 @@ class GetCustomerDataGraphql implements GetCustomerData {
   GetCustomerDataGraphql({required this.graphqlClient});
 
   @override
-  Future<Customer> getCustomerData(String offerId) async {
+  Future<Customer> getCustomerData() async {
     final result = await graphqlClient.query(query: customerData());
 
     if (result.hasException) {

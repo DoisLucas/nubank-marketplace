@@ -1,5 +1,5 @@
-import 'models.dart';
 import '../../domain/entities/entities.dart';
+import 'models.dart';
 
 class OfferModel extends Offer {
   final String id;

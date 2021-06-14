@@ -8,6 +8,7 @@ import 'package:nubank_marketplace/domain/usecases/get_customer_data.dart';
 import 'package:nubank_marketplace/domain/usecases/make_purchase.dart';
 import 'package:nubank_marketplace/infra/graphql/graphql.dart';
 import 'package:nubank_marketplace/presenter/home/home_page.dart';
+import 'package:nubank_marketplace/presenter/splash/splash_page.dart';
 
 import 'commons/utils/constants.dart';
 
@@ -23,7 +24,11 @@ class MyApp extends StatelessWidget {
       title: 'Nubank',
       theme: NuTheme.themeData,
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => SplashPage()),
+        GetPage(name: '/home', page: () => HomePage()),
+      ],
     );
   }
 }

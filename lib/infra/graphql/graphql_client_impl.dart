@@ -1,5 +1,5 @@
-import 'package:nubank_marketplace/data/graphql/graphql.dart';
 import 'package:graphql/client.dart';
+import 'package:nubank_marketplace/data/graphql/graphql.dart';
 
 class GraphqlClientImpl implements GraphqlClient {
   final String url;

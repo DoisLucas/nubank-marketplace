@@ -1,6 +1,1 @@
-class HomeController {
-
-
-
-
-}
+class HomeController {}

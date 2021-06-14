@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
+import 'package:nubank_marketplace/commons/utils/conversion.dart';
+import 'package:nubank_marketplace/domain/entities/customer.dart';
 import 'package:nubank_marketplace/presenter/marketplace/marketplace_page.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
+class HomePage extends StatelessWidget {
+  final Customer? customer;
 
-class _HomePageState extends State<HomePage> {
+  const HomePage({Key? key, this.customer}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,21 +26,21 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            buildAppBar(),
-            buildContent(),
+            buildAppBar(context),
+            buildContent(context),
           ],
         ),
       ),
     );
   }
 
-  Widget buildAppBar() {
+  Widget buildAppBar(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: Row(
         children: [
           Text(
-            "Olá, Pedro Cabral",
+            "Olá, ${customer?.name}",
             style: TextStyle(
               fontFamily: 'Graphik',
               fontSize: 19,
@@ -72,7 +73,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildContent() {
+  Widget buildContent(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Column(
@@ -130,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                       height: 15,
                     ),
                     Text(
-                      "R\$ 123.104,72",
+                      "${toMoney(customer?.balance ?? 0)}",
                       style: TextStyle(
                         fontFamily: 'Graphik',
                         fontSize: 25,
