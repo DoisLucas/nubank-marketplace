@@ -28,11 +28,11 @@ class Utils {
       ),
       backgroundColor: NuTheme.kDark,
       flushbarPosition: FlushbarPosition.BOTTOM,
-      borderRadius: BorderRadius.circular(3),
-      icon: Icon(icon, color: NuTheme.kGrayColor),
+      borderRadius: BorderRadius.circular(5),
+      icon: Icon(icon, color: NuTheme.kGrayColor, size: 25,),
       duration: Duration(seconds: 6),
       shouldIconPulse: false,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(25),
       margin: EdgeInsets.only(right: 20, left: 20, bottom: 10),
     )..show(context);
   }

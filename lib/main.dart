@@ -34,8 +34,7 @@ class MyApp extends StatelessWidget {
 
 void runFactories() {
   //Graphql Client
-  GraphqlClient graphqlClient = GraphqlClientImpl(url: Utils.getApiUrl(), token: 'token');
-  Get.put(graphqlClient, tag: 'graphql_client');
+  GraphqlClient graphqlClient = initGraphqlClient();
 
   //Usecases
   GetCustomerData getCustomerData = GetCustomerDataGraphql(graphqlClient: graphqlClient);
@@ -43,4 +42,10 @@ void runFactories() {
 
   MakePurchase makePurchase = MakePurchaseGraphql(graphqlClient: graphqlClient);
   Get.put(makePurchase, tag: 'make_purchase');
+}
+
+GraphqlClient initGraphqlClient() {
+  const String token = String.fromEnvironment('URL_TOKEN');
+  GraphqlClient graphqlClient = GraphqlClientImpl(url: Utils.getApiUrl(), token: token);
+  return Get.put(graphqlClient, tag: 'graphql_client');
 }

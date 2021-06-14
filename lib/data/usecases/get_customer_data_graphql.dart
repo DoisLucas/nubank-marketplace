@@ -11,11 +11,7 @@ class GetCustomerDataGraphql implements GetCustomerData {
   @override
   Future<Customer> getCustomerData() async {
     final result = await graphqlClient.query(query: customerData());
-
-    if (result.hasException) {
-      throw Exception('Error on getCustomerData query');
-    }
-
+    if (result.hasException) throw Exception('Error on getCustomerData query');
     return CustomerModel.fromJson(result.data['viewer']);
   }
 

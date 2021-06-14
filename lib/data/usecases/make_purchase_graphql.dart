@@ -11,12 +11,7 @@ class MakePurchaseGraphql implements MakePurchase {
   @override
   Future<PurchaseResult> purchase(String offerId) async {
     final result = await graphqlClient.mutate(query: purchaseQuery(offerId));
-
-    if (result.hasException) {
-      throw Exception('Error on purchase query');
-    }
-
-    print(result.data['purchase']);
+    if (result.hasException) throw Exception('Error on purchase query');
     return PurchaseResultModel.fromJson(result.data['purchase']);
   }
 
