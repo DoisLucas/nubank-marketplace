@@ -5,21 +5,21 @@ class CustomerModel extends Customer {
   final String id;
   final String name;
   final int balance;
-  final List<OfferModel> offers;
+  final List<OfferModel>? offers;
 
   const CustomerModel({
     required this.id,
     required this.name,
     required this.balance,
-    required this.offers,
-  }) : super(id: id, name: name, balance: balance, offers: offers);
+    this.offers,
+  }) : super(id: id, name: name, balance: balance);
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) {
     return CustomerModel(
       id: json['id'],
       name: json['name'],
       balance: json['balance'],
-      offers: (json['offers'] as List).map((it) => OfferModel.fromJson(it)).toList(),
+      offers: json['offers'] != null ? (json['offers'] as List).map((it) => OfferModel.fromJson(it)).toList() : null,
     );
   }
 
@@ -28,7 +28,7 @@ class CustomerModel extends Customer {
     data['id'] = this.id;
     data['name'] = this.name;
     data['balance'] = this.balance;
-    data['offers'] = offers.map((it) => it.toJson()).toList();
+    data['offers'] = offers!.map((it) => it.toJson()).toList();
     return data;
   }
 }

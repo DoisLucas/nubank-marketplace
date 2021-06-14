@@ -16,11 +16,12 @@ class MakePurchaseGraphql implements MakePurchase {
       throw Exception('Error on purchase query');
     }
 
+    print(result.data['purchase']);
     return PurchaseResultModel.fromJson(result.data['purchase']);
   }
 
   static String purchaseQuery(String id) {
-    return r'''mutation {
+    return """mutation {
     purchase (offerId: \"$id\") {
         success
         errorMessage
@@ -30,6 +31,6 @@ class MakePurchaseGraphql implements MakePurchase {
             balance
         }
       }
-    }''';
+    }""";
   }
 }

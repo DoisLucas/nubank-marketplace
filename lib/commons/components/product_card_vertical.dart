@@ -7,8 +7,15 @@ import '../theme.dart';
 
 class ProductCardVertical extends StatelessWidget {
   final Offer offer;
+  final Function() onButtonTap;
+  final Function() onCardTap;
 
-  const ProductCardVertical({Key? key, required this.offer}) : super(key: key);
+  const ProductCardVertical({
+    Key? key,
+    required this.offer,
+    required this.onButtonTap,
+    required this.onCardTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

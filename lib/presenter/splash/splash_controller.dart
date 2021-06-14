@@ -9,7 +9,7 @@ class SplashController extends GetxController {
 
   SplashController() {
     getData().then((value) {
-      Get.to(() => HomePage(customer: value), transition: Transition.fade);
+      Get.off(() => HomePage(customer: value), transition: Transition.fade);
     });
   }
 

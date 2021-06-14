@@ -12,4 +12,5 @@ class NuTheme {
   static const Color kMainLowColor = Color(0xffECD8FB);
   static const Color kGrayColor = Color(0xff858585);
   static const Color kGrayLowColor = Color(0xffF0F1F5);
+  static const Color kDark = Color(0xff191919);
 }
