@@ -25,9 +25,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/
     - assets/logo/
-    - assets/video/
 
   fonts:
     - family: Graphik

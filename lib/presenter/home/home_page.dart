@@ -5,16 +5,16 @@ import 'package:nubank_marketplace/commons/components/outline_button.dart' as nu
 import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
 import 'package:nubank_marketplace/commons/utils.dart';
-import 'package:nubank_marketplace/domain/entities/customer.dart';
+import 'package:nubank_marketplace/presenter/home/home_controller.dart';
 import 'package:nubank_marketplace/presenter/marketplace/marketplace_page.dart';
 
 class HomePage extends StatelessWidget {
-  final Customer? customer;
-
-  const HomePage({Key? key, this.customer}) : super(key: key);
+  late final HomeController controller;
 
   @override
   Widget build(BuildContext context) {
+    controller = Get.put(HomeController());
+
     return Scaffold(
       backgroundColor: NuTheme.kMainColor,
       appBar: AppBar(
@@ -42,26 +42,34 @@ class HomePage extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            "${Strings.hello}, ${customer?.name}",
+            "${Strings.hello}, ${controller.customerController.getCustomer().name}",
             style: TextStyle(
-              fontFamily: 'Graphik',
               fontSize: 19,
               fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
           ),
           Spacer(),
-          Container(
-            width: 45,
-            height: 45,
-            decoration: BoxDecoration(
-              color: NuTheme.kMainMiddleColor,
-              borderRadius: BorderRadius.circular(45 / 2),
+          Obx(
+            () => GestureDetector(
+              onTap: () {
+                controller.toggleHide();
+              },
+              child: Container(
+                width: 45,
+                height: 45,
+                decoration: BoxDecoration(
+                  color: NuTheme.kMainMiddleColor,
+                  borderRadius: BorderRadius.circular(45 / 2),
+                ),
+                child: Icon(
+                  controller.isHide.value ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                  color: NuTheme.kGrayLowColor,
+                ),
+              ),
             ),
           ),
-          SizedBox(
-            width: 10,
-          ),
+          SizedBox(width: 10),
           Container(
             width: 45,
             height: 45,
@@ -109,7 +117,6 @@ class HomePage extends StatelessWidget {
                           child: Text(
                             Strings.account,
                             style: TextStyle(
-                              fontFamily: 'Graphik',
                               fontSize: 12,
                               color: NuTheme.kGrayColor,
                               fontWeight: FontWeight.w400,
@@ -132,14 +139,21 @@ class HomePage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      "${Utils.toMoney(customer?.balance ?? 0)}",
-                      style: TextStyle(
-                        fontFamily: 'Graphik',
-                        fontSize: 25,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    Obx(
+                      () {
+                        if (controller.isHide.value) {
+                          return Container(
+                            height: 30,
+                            width: MediaQuery.of(context).size.width,
+                            color: NuTheme.kGrayLowColor,
+                          );
+                        } else {
+                          return Text(
+                            "${Utils.toMoney(controller.customerController.getCustomer().balance)}",
+                            style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.w600),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),
@@ -174,7 +188,6 @@ class HomePage extends StatelessWidget {
                           child: Text(
                             Strings.nuStore,
                             style: TextStyle(
-                              fontFamily: 'Graphik',
                               fontSize: 15,
                               letterSpacing: 0.5,
                               color: NuTheme.kMainColor,
@@ -190,7 +203,6 @@ class HomePage extends StatelessWidget {
                     Text(
                       Strings.discoverDescription,
                       style: TextStyle(
-                        fontFamily: 'Graphik',
                         fontSize: 12,
                         letterSpacing: 0.5,
                         color: Colors.black,
@@ -203,7 +215,7 @@ class HomePage extends StatelessWidget {
                       text: Strings.discover,
                       onPressed: () {
                         Get.to(
-                          () => MarketplacePage(customer: customer),
+                          () => MarketplacePage(),
                         );
                       },
                     )

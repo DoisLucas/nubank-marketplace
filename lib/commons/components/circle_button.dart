@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import '../commons.dart';
 
 class CircleButton extends StatelessWidget {
   final String text;
@@ -48,7 +48,6 @@ class CircleButton extends StatelessWidget {
                             child: Text(
                               baloonText ?? '',
                               style: TextStyle(
-                                fontFamily: 'Graphik',
                                 fontSize: 12,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -64,7 +63,6 @@ class CircleButton extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-              fontFamily: 'Graphik',
               fontSize: 12,
               color: Colors.black,
               fontWeight: FontWeight.w600,

@@ -4,10 +4,10 @@ import 'models.dart';
 class CustomerModel extends Customer {
   final String id;
   final String name;
-  final int balance;
   final List<OfferModel>? offers;
+  int balance;
 
-  const CustomerModel({
+  CustomerModel({
     required this.id,
     required this.name,
     required this.balance,

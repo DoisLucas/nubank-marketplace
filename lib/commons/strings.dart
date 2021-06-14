@@ -12,4 +12,5 @@ class Strings {
   static const String nuStore = 'Nu Store';
   static const String successPurchase = "Purchase made successfully";
   static const String description = "Description";
+  static const String networkError = "Network error!";
 }

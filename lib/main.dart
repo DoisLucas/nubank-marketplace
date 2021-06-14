@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:nubank_marketplace/commons/theme.dart';
 import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/data/graphql/graphql.dart';
-import 'package:nubank_marketplace/data/usecases/get_customer_data_graphql.dart';
 import 'package:nubank_marketplace/data/usecases/usecases.dart';
-import 'package:nubank_marketplace/domain/usecases/get_customer_data.dart';
-import 'package:nubank_marketplace/domain/usecases/make_purchase.dart';
+import 'package:nubank_marketplace/domain/usecases/usecases.dart';
 import 'package:nubank_marketplace/infra/graphql/graphql.dart';
-import 'package:nubank_marketplace/presenter/home/home_page.dart';
 import 'package:nubank_marketplace/presenter/splash/splash_page.dart';
 
 void main() {
@@ -23,11 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Nubank',
       theme: NuTheme.themeData,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      getPages: [
-        GetPage(name: '/', page: () => SplashPage()),
-        GetPage(name: '/home', page: () => HomePage()),
-      ],
+      home: SplashPage(),
     );
   }
 }

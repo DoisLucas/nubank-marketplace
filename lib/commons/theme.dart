@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class NuTheme {
   static final ThemeData themeData = ThemeData(
     primarySwatch: Colors.deepPurple,
+    fontFamily: "Graphik",
   );
 
   static const Color kMainColor = Color(0xff8324D1);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import '../commons.dart';
 
 class OutlineButton extends StatelessWidget {
   final String text;
@@ -27,7 +27,6 @@ class OutlineButton extends StatelessWidget {
             text,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'Graphik',
               fontSize: 12,
               color: NuTheme.kMainColor,
               fontWeight: FontWeight.w500,

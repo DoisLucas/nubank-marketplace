@@ -17,7 +17,7 @@ class Utils {
     return currency.format(value);
   }
 
-  static void handleResult({
+  static void handlePurchaseResult({
     required BuildContext context,
     required String title,
     bool isError = false,
@@ -25,7 +25,7 @@ class Utils {
     Utils.showSnackBar(
       title: isError ? title : Strings.successPurchase,
       context: context,
-      icon: isError ? Icons.error_outline : Icons.check_circle_outline,
+      icon: isError ? Icons.warning_amber_outlined : Icons.check_circle_outline,
     );
   }
 
@@ -34,7 +34,6 @@ class Utils {
       messageText: Text(
         title,
         style: TextStyle(
-          fontFamily: 'Graphik',
           color: Colors.white,
           fontSize: 14,
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import '../commons.dart';
 
 class MainButton extends StatelessWidget {
   final String title;
@@ -33,7 +33,6 @@ class MainButton extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontFamily: 'Graphik',
               fontSize: fontSize ?? 12,
               color: Colors.white,
               fontWeight: FontWeight.w500,

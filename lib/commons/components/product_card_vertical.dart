@@ -62,7 +62,6 @@ class ProductCardVertical extends StatelessWidget {
                 Text(
                   offer.product.name,
                   style: TextStyle(
-                    fontFamily: 'Graphik',
                     fontSize: 15,
                     letterSpacing: 0.5,
                     color: NuTheme.kMainColor,
@@ -77,7 +76,6 @@ class ProductCardVertical extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontFamily: 'Graphik',
                     fontSize: 17,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,

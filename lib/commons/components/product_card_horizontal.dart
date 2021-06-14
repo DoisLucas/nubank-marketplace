@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
-import 'package:nubank_marketplace/commons/strings.dart';
-import 'package:nubank_marketplace/commons/utils.dart';
+
 import 'package:nubank_marketplace/domain/entities/entities.dart';
 
-import '../theme.dart';
-import 'main_button.dart';
+import '../commons.dart';
+import 'components.dart';
 
 class ProductCardHorizontal extends StatelessWidget {
   final Offer offer;
@@ -62,7 +62,6 @@ class ProductCardHorizontal extends StatelessWidget {
                 Text(
                   offer.product.name,
                   style: TextStyle(
-                    fontFamily: 'Graphik',
                     fontSize: 15,
                     letterSpacing: 0.5,
                     color: NuTheme.kMainColor,
@@ -77,7 +76,6 @@ class ProductCardHorizontal extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontFamily: 'Graphik',
                     fontSize: 17,
                     color: Colors.black,
                     fontWeight: FontWeight.w600,

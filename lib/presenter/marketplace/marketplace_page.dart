@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:nubank_marketplace/commons/components/circle_button.dart';
-import 'package:nubank_marketplace/commons/components/product_card_horizontal.dart';
-import 'package:nubank_marketplace/commons/components/product_card_vertical.dart';
-import 'package:nubank_marketplace/commons/components/section_divider.dart';
-import 'package:nubank_marketplace/commons/components/section_title.dart';
+import 'package:nubank_marketplace/commons/components/components.dart';
 import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
 import 'package:nubank_marketplace/commons/utils.dart';
-import 'package:nubank_marketplace/domain/entities/customer.dart';
-import 'package:nubank_marketplace/domain/entities/purchase_result.dart';
+import 'package:nubank_marketplace/domain/entities/entities.dart';
 import 'package:nubank_marketplace/presenter/marketplace/marketplace_controller.dart';
 import 'package:nubank_marketplace/presenter/product/product_page.dart';
 
 class MarketplacePage extends StatelessWidget {
-  final Customer? customer;
   late final MarketPlaceController controller;
-
-  MarketplacePage({Key? key, this.customer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,22 +53,27 @@ class MarketplacePage extends StatelessWidget {
               child: Text(
                 Strings.balance,
                 style: TextStyle(
-                  fontFamily: 'Graphik',
                   fontSize: 13,
                   fontWeight: FontWeight.w500,
                   color: NuTheme.kGrayColor,
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 25, left: 25, top: 10, bottom: 25),
-              child: Text(
-                "${Utils.toMoney(customer?.balance ?? 0)}",
-                style: TextStyle(
-                  fontFamily: 'Graphik',
-                  fontSize: 25,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
+            Obx(
+              () => Padding(
+                padding: EdgeInsets.only(
+                  right: 25,
+                  left: 25,
+                  top: 10,
+                  bottom: 25,
+                ),
+                child: Text(
+                  "${Utils.toMoney(controller.customerController.getCustomer().balance)}",
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -106,19 +103,12 @@ class MarketplacePage extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 25),
               child: Row(
-                children: customer!.offers!.map(
+                children: controller.customerController.getCustomer().offers!.map(
                   (e) {
                     return ProductCardVertical(
                       offer: e,
-                      onButtonTap: () async {
-                        PurchaseResult result = await controller.buy(e.id);
-                        Utils.handleResult(
-                          title: result.errorMessage,
-                          context: context,
-                          isError: !result.success,
-                        );
-                      },
-                      onCardTap: () => Get.to(ProductPage(offer: e)),
+                      onButtonTap: () => controller.buy(offerId: e.id, context: context),
+                      onCardTap: () => navigateToProductPage(e, context),
                     );
                   },
                 ).toList(),
@@ -127,19 +117,12 @@ class MarketplacePage extends StatelessWidget {
             SectionDivider(),
             SectionTitle(title: Strings.wanted),
             Column(
-              children: customer!.offers!.map(
+              children: controller.customerController.getCustomer().offers!.map(
                 (e) {
                   return ProductCardHorizontal(
                     offer: e,
-                    onButtonTap: () async {
-                      PurchaseResult result = await controller.buy(e.id);
-                      Utils.handleResult(
-                        title: result.errorMessage,
-                        context: context,
-                        isError: !result.success,
-                      );
-                    },
-                    onCardTap: () => Get.to(ProductPage(offer: e)),
+                    onButtonTap: () => controller.buy(offerId: e.id, context: context),
+                    onCardTap: () => navigateToProductPage(e, context),
                   );
                 },
               ).toList(),
@@ -148,5 +131,14 @@ class MarketplacePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void navigateToProductPage(Offer offer, BuildContext context) {
+    Get.to(() {
+      return ProductPage(
+        offer: offer,
+        onBuy: () => controller.buy(offerId: offer.id, context: context),
+      );
+    });
   }
 }

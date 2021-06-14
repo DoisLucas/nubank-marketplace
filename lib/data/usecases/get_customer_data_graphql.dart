@@ -1,3 +1,5 @@
+import 'package:nubank_marketplace/commons/commons.dart';
+import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/data/graphql/graphql.dart';
 import 'package:nubank_marketplace/data/models/models.dart';
 import 'package:nubank_marketplace/domain/entities/entities.dart';
@@ -9,10 +11,13 @@ class GetCustomerDataGraphql implements GetCustomerData {
   GetCustomerDataGraphql({required this.graphqlClient});
 
   @override
-  Future<Customer> getCustomerData() async {
-    final result = await graphqlClient.query(query: customerData());
-    if (result.hasException) throw Exception('Error on getCustomerData query');
-    return CustomerModel.fromJson(result.data['viewer']);
+  Future<Customer?> getCustomerData() async {
+    try {
+      final result = await graphqlClient.query(query: customerData());
+      if (!result.hasException) return CustomerModel.fromJson(result.data['viewer']);
+    } catch (e) {
+      throw Exception(Strings.networkError);
+    }
   }
 
   static String customerData() {

@@ -8,7 +8,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(SplashController());
+    controller = Get.put(SplashController(context: context));
 
     return Scaffold(
       backgroundColor: NuTheme.kMainColor,

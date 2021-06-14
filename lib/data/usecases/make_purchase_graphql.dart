@@ -1,3 +1,4 @@
+import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/data/graphql/graphql.dart';
 import 'package:nubank_marketplace/data/models/models.dart';
 import 'package:nubank_marketplace/domain/entities/entities.dart';
@@ -9,10 +10,13 @@ class MakePurchaseGraphql implements MakePurchase {
   MakePurchaseGraphql({required this.graphqlClient});
 
   @override
-  Future<PurchaseResult> purchase(String offerId) async {
-    final result = await graphqlClient.mutate(query: purchaseQuery(offerId));
-    if (result.hasException) throw Exception('Error on purchase query');
-    return PurchaseResultModel.fromJson(result.data['purchase']);
+  Future<PurchaseResult?> purchase(String offerId) async {
+    try {
+      final result = await graphqlClient.mutate(query: purchaseQuery(offerId));
+      if (!result.hasException) return PurchaseResultModel.fromJson(result.data['purchase']);
+    } catch (e) {
+      throw Exception(Strings.networkError);
+    }
   }
 
   static String purchaseQuery(String id) {

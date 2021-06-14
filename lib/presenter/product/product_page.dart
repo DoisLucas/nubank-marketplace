@@ -6,19 +6,15 @@ import 'package:nubank_marketplace/commons/strings.dart';
 import 'package:nubank_marketplace/commons/theme.dart';
 import 'package:nubank_marketplace/commons/utils.dart';
 import 'package:nubank_marketplace/domain/entities/offer.dart';
-import 'package:nubank_marketplace/domain/entities/purchase_result.dart';
-import 'package:nubank_marketplace/presenter/marketplace/marketplace_controller.dart';
 
 class ProductPage extends StatelessWidget {
   final Offer offer;
-  late final MarketPlaceController marketPlaceController;
+  final Function() onBuy;
 
-  ProductPage({Key? key, required this.offer}) : super(key: key);
+  ProductPage({Key? key, required this.offer, required this.onBuy}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    marketPlaceController = Get.put(MarketPlaceController());
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -81,7 +77,6 @@ class ProductPage extends StatelessWidget {
                           Text(
                             offer.product.name,
                             style: TextStyle(
-                              fontFamily: 'Graphik',
                               fontSize: 18,
                               letterSpacing: 0.5,
                               color: NuTheme.kMainColor,
@@ -94,7 +89,6 @@ class ProductPage extends StatelessWidget {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontFamily: 'Graphik',
                               fontSize: 20,
                               color: Colors.black,
                               fontWeight: FontWeight.w600,
@@ -117,7 +111,6 @@ class ProductPage extends StatelessWidget {
                           Text(
                             Strings.description,
                             style: TextStyle(
-                              fontFamily: 'Graphik',
                               fontSize: 18,
                               letterSpacing: 0.5,
                               color: NuTheme.kMainColor,
@@ -130,7 +123,6 @@ class ProductPage extends StatelessWidget {
                           Text(
                             "${offer.product.description}",
                             style: TextStyle(
-                              fontFamily: 'Graphik',
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
@@ -144,19 +136,14 @@ class ProductPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom + 10),
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).padding.bottom + 10,
+              ),
               child: MainButton(
                 title: Strings.buy,
                 heigth: 50,
                 fontSize: 14,
-                onTap: () async {
-                  PurchaseResult result = await marketPlaceController.buy(offer.id);
-                  Utils.handleResult(
-                    title: result.errorMessage,
-                    context: context,
-                    isError: !result.success,
-                  );
-                },
+                onTap: onBuy,
               ),
             )
           ],
